@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Core Imagine studio — Our Process</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--black:#1a1a1a;--accent:#D85A30;--light:#fcf2e4;--border:rgba(0,0,0,0.1);}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--black);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;border-bottom:1px solid var(--border);background:var(--light);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.4rem;text-decoration:none;color:var(--black);}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:2rem;list-style:none;}
+  nav ul li a{text-decoration:none;color:var(--black);font-size:.875rem;font-weight:500;transition:color .2s;}
+  nav ul li a:hover,nav ul li a.active{color:var(--accent);}
+  .nav-cta{background:var(--black);color:white!important;padding:.5rem 1.4rem;border-radius:50px;}
+  .nav-cta:hover{background:var(--accent)!important;}
+
+  .page-hero{background:var(--black);color:white;padding:6rem 4rem 5rem;text-align:center;}
+  .page-hero .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#F5C4B3;margin-bottom:1rem;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.2rem;}
+  .page-hero h1 em{font-style:italic;color:var(--accent);}
+  .page-hero p{font-size:1.05rem;color:#aaa;max-width:560px;margin:0 auto;line-height:1.7;}
+
+  /* TIMELINE STEPS */
+  .process-section{padding:6rem 4rem;}
+  .process-steps{display:flex;flex-direction:column;gap:0;}
+  .step-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:3rem;align-items:start;padding:4rem 0;border-bottom:1px solid var(--border);position:relative;}
+  .step-row:last-child{border-bottom:none;}
+  .step-num{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--accent);opacity:.25;line-height:1;padding-top:.3rem;}
+  .step-content h2{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:.8rem;}
+  .step-content .tag{font-size:.7rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+  .step-content p{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:1.5rem;}
+  .step-detail{background:white;border:1px solid var(--border);border-radius:16px;padding:1.8rem;}
+  .step-detail h4{font-size:.875rem;font-weight:500;margin-bottom:1rem;color:var(--black);}
+  .step-items{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
+  .step-items li{font-size:.85rem;color:#555;display:flex;gap:.6rem;align-items:flex-start;}
+  .step-items li::before{content:'✓';color:var(--accent);flex-shrink:0;margin-top:1px;}
+  .step-duration{display:inline-block;background:#FAF0EB;color:var(--accent);font-size:.75rem;font-weight:500;padding:.3rem .9rem;border-radius:50px;margin-top:1rem;}
+
+  /* FAQ */
+  .faq-section{background:white;padding:5rem 4rem;}
+  .faq-section .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+  .faq-section h2{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:.8rem;}
+  .faq-section .sub{color:#666;font-size:1rem;line-height:1.7;max-width:500px;margin-bottom:3rem;}
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .faq-item{border:1px solid var(--border);border-radius:14px;padding:1.6rem;}
+  .faq-item h4{font-size:.95rem;font-weight:500;margin-bottom:.7rem;}
+  .faq-item p{font-size:.875rem;color:#666;line-height:1.65;}
+
+  /* TIMELINE VISUAL */
+  .timeline-section{background:#FAF0EB;padding:5rem 4rem;text-align:center;}
+  .timeline-section .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+  .timeline-section h2{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:.8rem;}
+  .timeline-section .sub{color:#666;font-size:1rem;max-width:500px;margin:0 auto 3rem;}
+  .timeline-bar{display:flex;align-items:center;justify-content:center;gap:0;max-width:900px;margin:0 auto;}
+  .tl-node{display:flex;flex-direction:column;align-items:center;gap:.6rem;flex:1;}
+  .tl-circle{width:52px;height:52px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-family:'Playfair Display',serif;font-size:1.1rem;}
+  .tl-label{font-size:.8rem;font-weight:500;text-align:center;}
+  .tl-time{font-size:.72rem;color:#888;}
+  .tl-line{flex:1;height:2px;background:var(--accent);opacity:.3;margin-bottom:2.4rem;}
+
+  .cta-band{background:var(--accent);padding:4rem;text-align:center;color:white;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;margin-bottom:1rem;}
+  .cta-band p{font-size:1rem;opacity:.85;margin-bottom:2rem;}
+  .btn-white{background:white;color:var(--accent);padding:.9rem 2.5rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;}
+
+  footer{background:#111;color:white;padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .foot-copy{font-size:.8rem;color:#555;margin-top:.4rem;}
+  .foot-links{display:flex;gap:1.5rem;}
+  .foot-links a{color:#888;font-size:.85rem;text-decoration:none;transition:color .2s;}
+  .foot-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="1_home.html" class="logo">Core<span>Imagine</span> Studio</a>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="protfolio.html">Portfolio</a></li>
+    <li><a href="process.html" class="active">Process</a></li>
+    <li><a href="about-us.html" >About</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <p class="tag">How We Work</p>
+  <h1>A process built for<br><em>results</em>, not guesswork</h1>
+  <p>We follow a proven, transparent 4-step process that keeps you informed, involved, and confident at every stage of your design project.</p>
+</div>
+
+<!-- TIMELINE VISUAL -->
+<section class="timeline-section">
+  <p class="tag">Project Timeline</p>
+  <h2>From brief to delivery</h2>
+  <p class="sub">Most projects are completed within 2–6 weeks depending on scope.</p>
+  <div class="timeline-bar">
+    <div class="tl-node">
+      <div class="tl-circle">01</div>
+      <div class="tl-label">Discovery</div>
+      <div class="tl-time">Days 1–2</div>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-node">
+      <div class="tl-circle">02</div>
+      <div class="tl-label">Strategy</div>
+      <div class="tl-time">Days 3–5</div>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-node">
+      <div class="tl-circle">03</div>
+      <div class="tl-label">Design</div>
+      <div class="tl-time">Days 6–18</div>
+    </div>
+    <div class="tl-line"></div>
+    <div class="tl-node">
+      <div class="tl-circle">04</div>
+      <div class="tl-label">Delivery</div>
+      <div class="tl-time">Day 19–21</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP DETAILS -->
+<section class="process-section">
+  <div class="process-steps">
+
+    <div class="step-row">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <p class="tag">Step One</p>
+        <h2>Discovery &amp; Brief</h2>
+        <p>Every great design project starts with deep understanding. We begin with a comprehensive discovery session — either in person at our Chennai studio or via video call — to understand your business, goals, audience, and competitive landscape.</p>
+        <p>We ask the right questions so we're solving the right problems. You'll fill in our detailed project brief, which becomes our shared roadmap for the entire project.</p>
+        <span class="step-duration">⏱ 1–2 days</span>
+      </div>
+      <div class="step-detail">
+        <h4>What happens in this phase:</h4>
+        <ul class="step-items">
+          <li>Initial consultation call (30–60 minutes)</li>
+          <li>Detailed project brief document shared</li>
+          <li>Competitor analysis &amp; market research</li>
+          <li>Target audience profiling</li>
+          <li>Project scope, timeline &amp; pricing confirmed</li>
+          <li>50% deposit invoice issued</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <p class="tag">Step Two</p>
+        <h2>Strategy &amp; Concept</h2>
+        <p>With a clear brief in hand, our team develops the creative strategy. We research your industry, analyze successful competitors, and build a visual direction — mood boards, color exploration, and typographic concepts — that will guide the design work.</p>
+        <p>You'll see and approve the creative direction before we commit to execution, ensuring we're perfectly aligned on the aesthetic and strategic vision.</p>
+        <span class="step-duration">⏱ 2–3 days</span>
+      </div>
+      <div class="step-detail">
+        <h4>What happens in this phase:</h4>
+        <ul class="step-items">
+          <li>Industry &amp; trend research</li>
+          <li>Mood board creation (2–3 directions)</li>
+          <li>Color palette exploration</li>
+          <li>Typography pairing selections</li>
+          <li>Creative direction presentation</li>
+          <li>Client sign-off before design begins</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <p class="tag">Step Three</p>
+        <h2>Design &amp; Refinement</h2>
+        <p>This is where the magic happens. Our designers craft the initial concepts using the approved creative direction. We present multiple design directions for your feedback and iterate until every detail is perfect.</p>
+        <p>All feedback is handled through a structured revision process — you receive designs via a shared link, leave comments, and we implement changes. Clear, efficient, and never frustrating.</p>
+        <span class="step-duration">⏱ 7–14 days</span>
+      </div>
+      <div class="step-detail">
+        <h4>What happens in this phase:</h4>
+        <ul class="step-items">
+          <li>Initial concept designs presented (2–3 options)</li>
+          <li>Feedback collected via shared Figma or PDF</li>
+          <li>Revisions implemented (2–unlimited rounds)</li>
+          <li>Design system built &amp; documented</li>
+          <li>All formats prepared for final use</li>
+          <li>Final approval from client</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <p class="tag">Step Four</p>
+        <h2>Delivery &amp; Handoff</h2>
+        <p>Once designs are approved, we prepare a comprehensive, well-organised file package. Everything you need is included — source files, export-ready formats, and full documentation so you can use your new brand confidently across any medium.</p>
+        <p>We don't just hand off files and disappear. We offer a 30-day post-project support period to answer any questions that arise after launch.</p>
+        <span class="step-duration">⏱ 1–2 days</span>
+      </div>
+      <div class="step-detail">
+        <h4>What's in your delivery package:</h4>
+        <ul class="step-items">
+          <li>Source files (AI, PSD, Figma)</li>
+          <li>Export-ready files (PNG, JPG, SVG, PDF)</li>
+          <li>Brand guidelines document</li>
+          <li>Font licenses &amp; usage instructions</li>
+          <li>Color codes (HEX, CMYK, RGB, Pantone)</li>
+          <li>30-day post-delivery support included</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <p class="tag">FAQ</p>
+  <h2>Common questions</h2>
+  <p class="sub">Everything you need to know before starting your project with us.</p>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h4>How long does a typical project take?</h4>
+      <p>Most brand identity projects take 2–3 weeks. Larger projects like full brand systems with website design can take 4–8 weeks. We'll give you a precise timeline in your project brief.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How many revisions are included?</h4>
+      <p>Our Professional and Enterprise packages include unlimited revisions. The Starter package includes 2 rounds of revisions, with additional rounds available at ₹2,000 per round.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I own the designs after delivery?</h4>
+      <p>Yes, absolutely. Once the final payment is received, full ownership and all intellectual property rights transfer to you. The source files are yours to use however you need.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What formats will I receive?</h4>
+      <p>You'll receive files in every format you need: AI, EPS, PSD for editing; PNG and JPG for digital use; PDF and SVG for web and print — all clearly organised in a folder structure.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can we meet in person?</h4>
+      <p>Yes! Our studio is located in Chennai, Tamil Nadu. We welcome in-person meetings for discovery sessions and design presentations. Remote clients are equally welcome via Zoom.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What is your payment structure?</h4>
+      <p>We require 50% upfront to begin the project and the remaining 50% upon final delivery. For enterprise projects, a custom payment schedule can be arranged.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to get started?</h2>
+  <p>Tell us about your project. We'll respond within 24 hours with a proposal.</p>
+  <a href="6_contact.html" class="btn-white">Start Your Project</a>
+</div>
+
+<footer>
+  <div>
+    <a href="1_home.html" style="font-family:'Playfair Display',serif;font-size:1.3rem;text-decoration:none;color:white;">Pixel<span style="color:var(--accent)">Craft</span> Studio</a>
+    <p class="foot-copy">© 2025 Core Imagine Studio. All rights reserved.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="6_contact.html">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

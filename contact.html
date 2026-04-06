@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Core Imagine studio — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--black:#1a1a1a;--accent:#D85A30;--light:#fcf2e4;--border:rgba(0,0,0,0.1);}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--black);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;border-bottom:1px solid var(--border);background:var(--light);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.4rem;text-decoration:none;color:var(--black);}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:2rem;list-style:none;}
+  nav ul li a{text-decoration:none;color:var(--black);font-size:.875rem;font-weight:500;transition:color .2s;}
+  nav ul li a:hover,nav ul li a.active{color:var(--accent);}
+  .nav-cta{background:var(--black);color:white!important;padding:.5rem 1.4rem;border-radius:50px;}
+  .nav-cta:hover{background:var(--accent)!important;}
+
+  .page-hero{background:var(--black);color:white;padding:6rem 4rem 5rem;text-align:center;}
+  .page-hero .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#F5C4B3;margin-bottom:1rem;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.2rem;}
+  .page-hero h1 em{font-style:italic;color:var(--accent);}
+  .page-hero p{font-size:1.05rem;color:#aaa;max-width:560px;margin:0 auto;line-height:1.7;}
+
+  /* CONTACT LAYOUT */
+  .contact-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+
+  /* LEFT: INFO */
+  .contact-info .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+  .contact-info h2{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem;}
+  .contact-info .desc{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:2.5rem;}
+  .contact-items{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.5rem;}
+  .contact-item{display:flex;align-items:flex-start;gap:1rem;}
+  .c-icon{width:44px;height:44px;border-radius:12px;background:#FAF0EB;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+  .c-label{font-size:.72rem;color:#aaa;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.2rem;}
+  .c-value{font-size:.95rem;font-weight:500;color:var(--black);}
+  .c-sub{font-size:.82rem;color:#777;margin-top:.1rem;}
+
+  .social-row{display:flex;gap:.75rem;margin-top:.5rem;}
+  .social-btn{display:flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border:1px solid var(--border);border-radius:50px;text-decoration:none;color:var(--black);font-size:.8rem;font-weight:500;transition:all .2s;}
+  .social-btn:hover{background:var(--black);color:white;border-color:var(--black);}
+
+  .hours-box{background:white;border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-top:2rem;}
+  .hours-box h4{font-size:.875rem;font-weight:500;margin-bottom:1rem;}
+  .hours-row{display:flex;justify-content:space-between;font-size:.85rem;padding:.35rem 0;border-bottom:1px solid var(--border);}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{color:#555;}
+  .hours-row .time{font-weight:500;}
+
+  /* RIGHT: FORM */
+  .contact-form{background:white;border:1px solid var(--border);border-radius:20px;padding:2.5rem;}
+  .form-title{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.5rem;}
+  .form-sub{font-size:.875rem;color:#777;margin-bottom:2rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem;}
+  .field label{font-size:.78rem;font-weight:500;color:#555;letter-spacing:.3px;}
+  .field input,.field textarea,.field select{
+    padding:.75rem 1rem;border:1px solid var(--border);border-radius:10px;
+    background:#FAFAFA;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--black);
+    outline:none;transition:border-color .2s;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);background:white;}
+  .field textarea{min-height:130px;resize:vertical;}
+  .budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+  .budget-opt{display:none;}
+  .budget-lbl{display:block;text-align:center;padding:.55rem .5rem;border:1px solid var(--border);border-radius:8px;font-size:.78rem;cursor:pointer;transition:all .2s;font-weight:500;color:#555;}
+  .budget-opt:checked + .budget-lbl{background:var(--black);color:white;border-color:var(--black);}
+  .submit-btn{width:100%;background:var(--accent);color:white;padding:1rem;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;transition:background .2s;margin-top:.5rem;}
+  .submit-btn:hover{background:var(--black);}
+  .form-note{font-size:.78rem;color:#aaa;text-align:center;margin-top:.8rem;}
+
+  /* MAP PLACEHOLDER */
+  .map-section{padding:0 4rem 5rem;}
+  .map-box{background:var(--black);border-radius:20px;height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:white;}
+  .map-box .map-icon{font-size:2.5rem;opacity:.3;}
+  .map-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;}
+  .map-box p{font-size:.875rem;color:#aaa;}
+
+  /* QUICK LINKS */
+  .quick-section{padding:0 4rem 5rem;}
+  .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .quick-card{background:white;border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;text-decoration:none;color:var(--black);transition:transform .2s,box-shadow .2s;}
+  .quick-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.07);}
+  .quick-icon{font-size:1.8rem;margin-bottom:.8rem;}
+  .quick-card h4{font-size:.95rem;font-weight:500;margin-bottom:.4rem;}
+  .quick-card p{font-size:.82rem;color:#777;}
+
+  footer{background:#111;color:white;padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .foot-copy{font-size:.8rem;color:#555;margin-top:.4rem;}
+  .foot-links{display:flex;gap:1.5rem;}
+  .foot-links a{color:#888;font-size:.85rem;text-decoration:none;transition:color .2s;}
+  .foot-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="1_home.html" class="logo">Core<span>Imagine</span> Studio</a>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="protfolio.html">Portfolio</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about-us.html" >About</a></li>
+    <li><a href="contact.html" class="nav-cta" class="active">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <p class="tag">Contact Us</p>
+  <h1>Let's build something<br><em>great</em> together</h1>
+  <p>Have a project in mind? Drop us a message. We respond within 24 hours and love talking about creative challenges.</p>
+</div>
+
+<section class="contact-section">
+  <!-- LEFT -->
+  <div class="contact-info">
+    <p class="tag">Get In Touch</p>
+    <h2>We'd love to hear from you</h2>
+    <p class="desc">Whether you're starting a new brand, refreshing an existing one, or need ongoing design support — we're here to help. Tell us about your project and let's figure out the best way forward together.</p>
+
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="c-icon">✉</div>
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-value">hello@pixelcraftstudio.in</div>
+          <div class="c-sub">We reply within 24 hours</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">☎</div>
+        <div>
+          <div class="c-label">Phone / WhatsApp</div>
+          <div class="c-value">+91 98400 00000</div>
+          <div class="c-sub">Mon–Fri, 9 AM – 6 PM IST</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">◎</div>
+        <div>
+          <div class="c-label">Studio Address</div>
+          <div class="c-value">PixelCraft Studio</div>
+          <div class="c-sub">12/4, 2nd Floor, Nungambakkam High Road<br>Chennai – 600 034, Tamil Nadu</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:.78rem;font-weight:500;color:#555;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.75rem;">Follow our work</p>
+    <div class="social-row">
+      <a href="#" class="social-btn">Instagram</a>
+      <a href="#" class="social-btn">Behance</a>
+      <a href="#" class="social-btn">LinkedIn</a>
+    </div>
+
+    <div class="hours-box">
+      <h4>Studio Hours</h4>
+      <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">9:00 AM – 6:00 PM</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM – 2:00 PM</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="contact-form">
+    <h3 class="form-title">Send us a message</h3>
+    <p class="form-sub">Fill in the details below and we'll get back to you with a custom proposal.</p>
+
+    <div class="form-row">
+      <div class="field"><label>First Name</label><input type="text" placeholder="Ravi"/></div>
+      <div class="field"><label>Last Name</label><input type="text" placeholder="Kumar"/></div>
+    </div>
+
+    <div class="field"><label>Email Address</label><input type="email" placeholder="ravi@yourcompany.com"/></div>
+    <div class="field"><label>Phone Number</label><input type="tel" placeholder="+91 98000 00000"/></div>
+    <div class="field"><label>Company / Business Name</label><input type="text" placeholder="Your Company Pvt. Ltd."/></div>
+
+    <div class="field">
+      <label>Service Required</label>
+      <select>
+        <option value="">— Select a service —</option>
+        <option>Brand Identity Design</option>
+        <option>Print Design</option>
+        <option>UI / Web Design</option>
+        <option>Social Media Graphics</option>
+        <option>Motion Graphics</option>
+        <option>Packaging Design</option>
+        <option>Multiple Services</option>
+        <option>Not sure — need advice</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Approximate Budget</label>
+      <div class="budget-grid">
+        <div><input type="radio" name="budget" id="b1" class="budget-opt"/><label for="b1" class="budget-lbl">Under ₹15K</label></div>
+        <div><input type="radio" name="budget" id="b2" class="budget-opt"/><label for="b2" class="budget-lbl">₹15K – ₹50K</label></div>
+        <div><input type="radio" name="budget" id="b3" class="budget-opt"/><label for="b3" class="budget-lbl">₹50K – ₹1L</label></div>
+        <div><input type="radio" name="budget" id="b4" class="budget-opt"/><label for="b4" class="budget-lbl">₹1L – ₹3L</label></div>
+        <div><input type="radio" name="budget" id="b5" class="budget-opt"/><label for="b5" class="budget-lbl">Above ₹3L</label></div>
+        <div><input type="radio" name="budget" id="b6" class="budget-opt"/><label for="b6" class="budget-lbl">Not sure</label></div>
+      </div>
+    </div>
+
+    <div class="field"><label>Project Details</label><textarea placeholder="Tell us about your project — what you need, your timeline, and any inspiration or references you have in mind..."></textarea></div>
+
+    <div class="field">
+      <label>How did you hear about us?</label>
+      <select>
+        <option value="">— Select —</option>
+        <option>Google Search</option>
+        <option>Instagram</option>
+        <option>Behance</option>
+        <option>Referral from a friend</option>
+        <option>LinkedIn</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <button class="submit-btn">Send Message — We'll Reply Within 24 Hours</button>
+    <p class="form-note">By submitting, you agree to our Privacy Policy. We never share your details with third parties.</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-box">
+    <div class="map-icon">◎</div>
+    <h3>Visit Our Studio</h3>
+    <p>verana road, kellambakkam,chennai– 603 103</p>
+    <p style="font-size:.8rem;color:#666;margin-top:.5rem;">[ https://maps.app.goo.gl/JbMPsbDsL3s7M6LfA]</p>
+  </div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="quick-section">
+  <div class="quick-grid">
+    <a href="2_services.html" class="quick-card">
+      <div class="quick-icon">◈</div>
+      <h4>Explore Our Services</h4>
+      <p>See all design services with detailed descriptions and pricing.</p>
+    </a>
+    <a href="3_portfolio.html" class="quick-card">
+      <div class="quick-icon">✦</div>
+      <h4>View Our Portfolio</h4>
+      <p>Browse 120+ completed projects across all design categories.</p>
+    </a>
+    <a href="4_process.html" class="quick-card">
+      <div class="quick-icon">▤</div>
+      <h4>How We Work</h4>
+      <p>Learn about our 4-step design process and what to expect.</p>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <a href="1_home.html" style="font-family:'Playfair Display',serif;font-size:1.3rem;text-decoration:none;color:white;">Pixel<span style="color:var(--accent)">Craft</span> Studio</a>
+    <p class="foot-copy">© 2025 Core Imagine Studio. All rights reserved.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="6_contact.html">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

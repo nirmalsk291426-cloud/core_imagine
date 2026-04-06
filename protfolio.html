@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Core Imagine studio — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--black:#1a1a1a;--accent:#D85A30;--light:#fcf2e4;--border:rgba(0,0,0,0.1);}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--black);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;border-bottom:1px solid var(--border);background:var(--light);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.4rem;text-decoration:none;color:var(--black);}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:2rem;list-style:none;}
+  nav ul li a{text-decoration:none;color:var(--black);font-size:.875rem;font-weight:500;transition:color .2s;}
+  nav ul li a:hover,nav ul li a.active{color:var(--accent);}
+  .nav-cta{background:var(--black);color:white!important;padding:.5rem 1.4rem;border-radius:50px;}
+  .nav-cta:hover{background:var(--accent)!important;}
+
+  .page-hero{background:var(--black);color:white;padding:6rem 4rem 5rem;text-align:center;}
+  .page-hero .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#F5C4B3;margin-bottom:1rem;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.2rem;}
+  .page-hero h1 em{font-style:italic;color:var(--accent);}
+  .page-hero p{font-size:1.05rem;color:#aaa;max-width:560px;margin:0 auto;line-height:1.7;}
+
+  /* FILTER TABS */
+  .filter-bar{display:flex;justify-content:center;gap:.75rem;padding:2.5rem 4rem 0;flex-wrap:wrap;}
+  .filter-btn{padding:.55rem 1.4rem;border-radius:50px;border:1px solid var(--border);background:white;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s;color:var(--black);}
+  .filter-btn.active,.filter-btn:hover{background:var(--black);color:white;border-color:var(--black);}
+
+  /* GRID */
+  .portfolio-section{padding:3rem 4rem 5rem;}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .port-card{border-radius:18px;overflow:hidden;background:white;border:1px solid var(--border);cursor:pointer;transition:transform .25s,box-shadow .25s;}
+  .port-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1);}
+  .port-card.wide{grid-column:span 2;}
+  .port-visual{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .port-card.wide .port-visual{aspect-ratio:16/7;}
+  .port-icon{font-size:4rem;opacity:.3;position:absolute;}
+  .port-label{font-size:1rem;font-family:'Playfair Display',serif;color:white;z-index:1;}
+  .port-info{padding:1.4rem 1.6rem;}
+  .port-info .cat{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;}
+  .port-info h3{font-size:1rem;font-weight:500;margin-bottom:.4rem;}
+  .port-info p{font-size:.825rem;color:#777;line-height:1.55;}
+
+  /* CASE STUDY SPOTLIGHT */
+  .spotlight{padding:0 4rem 5rem;}
+  .spotlight-inner{background:var(--black);border-radius:24px;padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;color:white;}
+  .spotlight-inner .tag{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#F5C4B3;margin-bottom:.8rem;}
+  .spotlight-inner h2{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem;}
+  .spotlight-inner p{color:#aaa;line-height:1.7;margin-bottom:1.5rem;}
+  .spot-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+  .spot-stat{background:rgba(255,255,255,.05);border-radius:12px;padding:1.2rem;}
+  .spot-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--accent);}
+  .spot-lbl{font-size:.75rem;color:#888;margin-top:4px;}
+  .spot-visual{border-radius:16px;background:#D85A30;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:6rem;opacity:.4;}
+  .btn-outline-white{border:1px solid rgba(255,255,255,.3);color:white;padding:.8rem 2rem;border-radius:50px;font-size:.875rem;text-decoration:none;display:inline-block;transition:all .2s;}
+  .btn-outline-white:hover{background:var(--accent);border-color:var(--accent);}
+
+  .cta-band{background:var(--accent);padding:4rem;text-align:center;color:white;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;margin-bottom:1rem;}
+  .cta-band p{font-size:1rem;opacity:.85;margin-bottom:2rem;}
+  .btn-white{background:white;color:var(--accent);padding:.9rem 2.5rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;}
+
+  footer{background:#111;color:white;padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .foot-copy{font-size:.8rem;color:#555;margin-top:.4rem;}
+  .foot-links{display:flex;gap:1.5rem;}
+  .foot-links a{color:#888;font-size:.85rem;text-decoration:none;transition:color .2s;}
+  .foot-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="1_home.html" class="logo">Core<span>Imagine</span> Studio</a>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="protfolio.html" class="active">Portfolio</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about-us.html" >About</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <p class="tag">Our Portfolio</p>
+  <h1>Work we're <em>proud</em> of</h1>
+  <p>120+ projects across branding, print, digital, and packaging. Every project tells a unique story.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All Work</button>
+  <button class="filter-btn">Brand Identity</button>
+  <button class="filter-btn">Print Design</button>
+  <button class="filter-btn">UI / Web</button>
+  <button class="filter-btn">Packaging</button>
+  <button class="filter-btn">Motion</button>
+</div>
+
+<section class="portfolio-section">
+  <div class="portfolio-grid">
+
+    <div class="port-card wide">
+      <div class="port-visual" style="background:#D85A30;">
+        <span class="port-icon">◈</span>
+        <span class="port-label">Aroma Café</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Brand Identity</p>
+        <h3>Aroma Café — Complete Brand System</h3>
+        <p>Logo, menu design, packaging, and interior signage for a premium Chennai café chain.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#3B6D11;">
+        <span class="port-icon">▣</span>
+        <span class="port-label">GreenLeaf</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Packaging Design</p>
+        <h3>GreenLeaf Organics</h3>
+        <p>Eco-conscious packaging for an organic food brand with 12 SKUs.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#185FA5;">
+        <span class="port-icon">⬡</span>
+        <span class="port-label">TechFlow</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">UI / Web Design</p>
+        <h3>TechFlow SaaS Platform</h3>
+        <p>End-to-end UI design for a B2B project management SaaS with 5,000+ users.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#993356;">
+        <span class="port-icon">✦</span>
+        <span class="port-label">Lumière</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Brand Identity</p>
+        <h3>Lumière Fashion Brand</h3>
+        <p>Luxury fashion brand identity including lookbook design and retail collateral.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#533AB7;">
+        <span class="port-icon">▤</span>
+        <span class="port-label">Nexus</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Print Design</p>
+        <h3>Nexus Real Estate Campaign</h3>
+        <p>Full print campaign including brochures, site hoardings, and newspaper ads.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#854F0B;">
+        <span class="port-icon">◎</span>
+        <span class="port-label">Spice Route</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Brand Identity + Print</p>
+        <h3>Spice Route Restaurant</h3>
+        <p>Restaurant branding including logo, menu, table cards, and digital assets.</p>
+      </div>
+    </div>
+
+    <div class="port-card wide">
+      <div class="port-visual" style="background:#1a1a1a;">
+        <span class="port-icon">✦</span>
+        <span class="port-label">Nova Jewelry</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Motion Graphics</p>
+        <h3>Nova Jewelry — Animated Brand Campaign</h3>
+        <p>Animated logo reveal, Instagram story series, and 60-second brand video for a luxury jewelry boutique.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#0F6E56;">
+        <span class="port-icon">▣</span>
+        <span class="port-label">FreshBox</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Packaging Design</p>
+        <h3>FreshBox Subscription</h3>
+        <p>Monthly subscription box packaging with custom illustration and insert cards.</p>
+      </div>
+    </div>
+
+    <div class="port-card">
+      <div class="port-visual" style="background:#BA7517;">
+        <span class="port-icon">◈</span>
+        <span class="port-label">Sunrise</span>
+      </div>
+      <div class="port-info">
+        <p class="cat">Brand Identity</p>
+        <h3>Sunrise Education Group</h3>
+        <p>Institutional branding for a network of 8 schools across Tamil Nadu.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASE STUDY SPOTLIGHT -->
+<section class="spotlight">
+  <div class="spotlight-inner">
+    <div>
+      <p class="tag">Case Study</p>
+      <h2>Aroma Café — From concept to iconic brand in 6 weeks</h2>
+      <p>When Aroma Café came to us, they had a great product but no visual identity. We built everything from scratch — logo, color system, menu, packaging, and in-store graphics — creating a cohesive brand that now has 3 thriving locations.</p>
+      <a href="6_contact.html" class="btn-outline-white">Start Your Project →</a>
+      <div class="spot-stats">
+        <div class="spot-stat"><div class="spot-num">3x</div><div class="spot-lbl">Revenue growth post-rebrand</div></div>
+        <div class="spot-stat"><div class="spot-num">6</div><div class="spot-lbl">Weeks from brief to launch</div></div>
+        <div class="spot-stat"><div class="spot-num">12</div><div class="spot-lbl">Design deliverables</div></div>
+        <div class="spot-stat"><div class="spot-num">3</div><div class="spot-lbl">New locations opened</div></div>
+      </div>
+    </div>
+    <div class="spot-visual">◈</div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Love what you see?</h2>
+  <p>Let's create something amazing together. Every great brand starts with a conversation.</p>
+  <a href="6_contact.html" class="btn-white">Start Your Project</a>
+</div>
+
+<footer>
+  <div>
+    <a href="1_home.html" style="font-family:'Playfair Display',serif;font-size:1.3rem;text-decoration:none;color:white;">Pixel<span style="color:var(--accent)">Craft</span> Studio</a>
+    <p class="foot-copy">© 2025 Core Imagine Studio. All rights reserved.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Instagram</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="6_contact.html">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

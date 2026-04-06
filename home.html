@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Core Imagine— Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--black:#1a1a1a;--accent:#D85A30;--light:#fffae5;--muted:#888;--border:rgba(0,0,0,0.1);--white:#ffffff;}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--black);}
+
+  /* NAV */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;border-bottom:1px solid var(--border);background:var(--light);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:-0.5px;text-decoration:none;color:var(--black);}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:2rem;list-style:none;}
+  nav ul li a{text-decoration:none;color:var(--black);font-size:0.875rem;font-weight:500;transition:color .2s;}
+  nav ul li a:hover,nav ul li a.active{color:var(--accent);}
+  .nav-cta{background:var(--black);color:white!important;padding:0.5rem 1.4rem;border-radius:50px;}
+  .nav-cta:hover{background:var(--accent)!important;color:white!important;}
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;min-height:88vh;align-items:center;padding:4rem 4rem;gap:4rem;}
+  .hero-tag{font-size:0.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.05;margin-bottom:1.5rem;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero-desc{font-size:1.05rem;line-height:1.75;color:#555;max-width:440px;margin-bottom:2.5rem;}
+  .hero-btns{display:flex;gap:1rem;}
+  .btn-primary{background:var(--black);color:white;padding:.9rem 2.2rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;transition:background .2s;}
+  .btn-primary:hover{background:var(--accent);}
+  .btn-outline{border:1.5px solid var(--black);color:var(--black);padding:.9rem 2.2rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;transition:all .2s;}
+  .btn-outline:hover{background:var(--black);color:white;}
+  .hero-visual{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;height:480px;}
+  .hc{border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .hc1{background:var(--accent);color:white;grid-row:1/3;}
+  .hc2{background:var(--black);color:white;}
+  .hc3{background:#F5C4B3;color:#4A1B0C;}
+  .hc-icon{font-size:2.8rem;margin-bottom:.4rem;}
+  .hc-label{position:absolute;bottom:14px;left:14px;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.7;}
+
+  /* STATS */
+  .stats{display:flex;justify-content:space-around;padding:3rem 4rem;background:var(--black);color:white;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--accent);}
+  .stat-lbl{font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:#aaa;margin-top:4px;}
+
+  /* SERVICES PREVIEW */
+  .section{padding:5rem 4rem;}
+  .sec-tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;}
+  .sec-sub{color:#666;font-size:1rem;line-height:1.7;max-width:500px;margin-bottom:3rem;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .svc-card{background:white;border:1px solid var(--border);border-radius:16px;padding:2rem;transition:transform .2s,box-shadow .2s;}
+  .svc-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.07);}
+  .svc-icon{width:50px;height:50px;border-radius:12px;background:#FAF0EB;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;}
+  .svc-card h3{font-size:1.05rem;font-weight:500;margin-bottom:.6rem;}
+  .svc-card p{font-size:.875rem;color:#666;line-height:1.65;}
+
+  /* TESTIMONIALS */
+  .testi-section{background:var(--black);color:white;padding:5rem 4rem;}
+  .testi-section .sec-title{color:white;}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+  .testi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.8rem;}
+  .stars{color:var(--accent);font-size:1rem;margin-bottom:1rem;letter-spacing:2px;}
+  .testi-card p{font-size:.9rem;line-height:1.7;color:#ccc;margin-bottom:1.2rem;}
+  .testi-author{font-size:.85rem;font-weight:500;color:white;}
+  .testi-role{font-size:.75rem;color:#aaa;}
+
+  /* CTA BAND */
+  .cta-band{background:var(--accent);padding:4rem;text-align:center;color:white;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;margin-bottom:1rem;}
+  .cta-band p{font-size:1rem;opacity:.85;margin-bottom:2rem;}
+  .btn-white{background:white;color:var(--accent);padding:.9rem 2.5rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;}
+
+  /* FOOTER */
+  footer{background:#111;color:white;padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  footer .logo{color:white;}
+  .foot-copy{font-size:.8rem;color:#555;margin-top:.4rem;}
+  .foot-links{display:flex;gap:1.5rem;}
+  .foot-links a{color:#888;font-size:.85rem;text-decoration:none;transition:color .2s;}
+  .foot-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="1_home.html" class="logo">Core<span>Imagine</span> Studio</a>
+  <ul>
+    <li><a href="home.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="protfolio.html">Portfolio</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about-us.html" >About</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-tag">Creative Design Studio — Chennai, India</p>
+    <h1>We design brands that <em>command</em> attention</h1>
+    <p class="hero-desc">From bold logos to complete brand identities, we craft visuals that make your business unforgettable. Strategy-driven design for ambitious brands.</p>
+    <div class="hero-btns">
+      <a href="3_portfolio.html" class="btn-primary">View Our Work</a>
+      <a href="6_contact.html" class="btn-outline">Start a Project</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hc hc1">
+      <span class="hc-icon">✦</span>
+      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;">Brand Identity</span>
+      <span class="hc-label">Logo &amp; Branding</span>
+    </div>
+    <div class="hc hc2">
+      <span class="hc-icon" style="font-size:2.2rem;font-family:'Playfair Display',serif;">Aa</span>
+      <span class="hc-label" style="color:rgba(255,255,255,.5);">Typography</span>
+    </div>
+    <div class="hc hc3">
+      <span class="hc-icon" style="font-size:1.8rem;">▣</span>
+      <span class="hc-label">Print &amp; Packaging</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div style="text-align:center"><div class="stat-num">120+</div><div class="stat-lbl">Projects Completed</div></div>
+  <div style="text-align:center"><div class="stat-num">8</div><div class="stat-lbl">Years of Experience</div></div>
+  <div style="text-align:center"><div class="stat-num">80+</div><div class="stat-lbl">Happy Clients</div></div>
+  <div style="text-align:center"><div class="stat-num">15</div><div class="stat-lbl">Industry Awards</div></div>
+</div>
+
+<!-- SERVICES PREVIEW -->
+<section class="section">
+  <p class="sec-tag">What We Do</p>
+  <h2 class="sec-title">Design services built<br>for your growth</h2>
+  <p class="sec-sub">Every service we offer is crafted to elevate your brand's visual presence and drive real business results.</p>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">◈</div>
+      <h3>Brand Identity</h3>
+      <p>Logo design, color palettes, typography systems, and brand guidelines that tell your story consistently across every touchpoint.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">▤</div>
+      <h3>Print Design</h3>
+      <p>Business cards, brochures, flyers, banners, and packaging design that leave a lasting physical impression on customers.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">⬡</div>
+      <h3>UI / Web Design</h3>
+      <p>Intuitive, pixel-perfect website and app interfaces designed to convert visitors into loyal customers.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">◎</div>
+      <h3>Social Media Graphics</h3>
+      <p>Scroll-stopping posts, stories, and ad creatives designed for Instagram, Facebook, LinkedIn, and more.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✦</div>
+      <h3>Motion Graphics</h3>
+      <p>Animated logos, promotional videos, and explainer animations that bring your brand to life digitally.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">▣</div>
+      <h3>Packaging Design</h3>
+      <p>Product packaging that stands out on shelves — creative, functional, and aligned with your brand identity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <p class="sec-tag" style="color:#F5C4B3;">What Clients Say</p>
+  <h2 class="sec-title">Trusted by businesses<br>across Tamil Nadu</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"PixelCraft completely transformed our café's visual identity. Our customers constantly compliment the branding — from the logo to the menu design."</p>
+      <div class="testi-author">Meena Sundaram</div>
+      <div class="testi-role">Owner, Aroma Café, Chennai</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★★★</div>
+      <p>"Professional, creative, and incredibly fast. They delivered our packaging design in record time without compromising on quality."</p>
+      <div class="testi-author">Arjun Nair</div>
+      <div class="testi-role">Founder, GreenLeaf Organics</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"The UI design they produced for our app exceeded all expectations. Clean, modern, and perfectly aligned with our startup's vision."</p>
+      <div class="testi-author">Priya Ramachandran</div>
+      <div class="testi-role">CEO, TechFlow Solutions</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to transform your brand?</h2>
+  <p>Let's talk about your project. Get a free consultation with our design team.</p>
+  <a href="6_contact.html" class="btn-white">Get a Free Quote</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="1_home.html" class="logo" style="font-family:'Playfair Display',serif;font-size:1.3rem;">Core<span style="color:var(--accent)">Imagine</span> Studio</a>
+    <p class="foot-copy">© 2025 Core Imagine Studio. All rights reserved.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">X</a>
+    <a href="6_contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

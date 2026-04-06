@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Core Imagine studio— Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--black:#1a1a1a;--accent:#D85A30;--light:#FAF8F5;--border:rgba(0,0,0,0.1);}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--black);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;border-bottom:1px solid var(--border);background:var(--light);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.4rem;text-decoration:none;color:var(--black);}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:2rem;list-style:none;}
+  nav ul li a{text-decoration:none;color:var(--black);font-size:.875rem;font-weight:500;transition:color .2s;}
+  nav ul li a:hover,nav ul li a.active{color:var(--accent);}
+  .nav-cta{background:var(--black);color:white!important;padding:.5rem 1.4rem;border-radius:50px;}
+  .nav-cta:hover{background:var(--accent)!important;}
+
+  /* PAGE HERO */
+  .page-hero{background:var(--black);color:white;padding:6rem 4rem 5rem;text-align:center;}
+  .page-hero .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#F5C4B3;margin-bottom:1rem;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.2rem;}
+  .page-hero h1 em{font-style:italic;color:var(--accent);}
+  .page-hero p{font-size:1.05rem;color:#aaa;max-width:560px;margin:0 auto;line-height:1.7;}
+
+  /* SERVICE DETAIL CARDS */
+  .section{padding:5rem 4rem;}
+  .services-detailed{display:flex;flex-direction:column;gap:5rem;}
+  .svc-row{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center;}
+  .svc-row.reverse{grid-template-columns:1.6fr 1fr;}
+  .svc-row.reverse .svc-visual{order:1;}
+  .svc-row.reverse .svc-text{order:2;}
+  .svc-num{font-family:'Playfair Display',serif;font-size:4rem;color:var(--accent);opacity:.2;line-height:1;margin-bottom:.5rem;}
+  .svc-text .tag{font-size:.7rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
+  .svc-text h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:1rem;}
+  .svc-text p{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:1.5rem;}
+  .svc-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+  .svc-list li{font-size:.875rem;color:#444;display:flex;align-items:center;gap:.6rem;}
+  .svc-list li::before{content:'→';color:var(--accent);font-weight:600;}
+  .svc-visual{border-radius:20px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;color:white;position:relative;overflow:hidden;}
+  .svc-visual .big-icon{font-size:5rem;opacity:.25;position:absolute;}
+  .svc-visual .label{font-size:1.2rem;z-index:1;}
+
+  /* PRICING */
+  .pricing-section{background:var(--black);padding:5rem 4rem;color:white;}
+  .pricing-section .tag{font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#F5C4B3;margin-bottom:.8rem;}
+  .pricing-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;}
+  .pricing-section .sub{color:#aaa;font-size:1rem;line-height:1.7;max-width:500px;margin-bottom:3rem;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .price-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:2.2rem;transition:border-color .2s;}
+  .price-card.featured{border-color:var(--accent);position:relative;}
+  .price-card.featured::before{content:'Most Popular';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:.7rem;font-weight:500;letter-spacing:1px;padding:.3rem 1rem;border-radius:50px;}
+  .price-tier{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:.8rem;}
+  .price-amount{font-family:'Playfair Display',serif;font-size:2.4rem;color:white;margin-bottom:.3rem;}
+  .price-amount span{font-size:1rem;font-family:'DM Sans',sans-serif;font-weight:300;}
+  .price-desc{font-size:.85rem;color:#888;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.08);}
+  .price-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem;}
+  .price-list li{font-size:.875rem;color:#ccc;display:flex;align-items:center;gap:.6rem;}
+  .price-list li::before{content:'✓';color:var(--accent);}
+  .price-btn{display:block;text-align:center;padding:.8rem;border:1px solid rgba(255,255,255,.2);border-radius:50px;color:white;text-decoration:none;font-size:.875rem;transition:all .2s;}
+  .price-btn:hover,.price-card.featured .price-btn{background:var(--accent);border-color:var(--accent);}
+
+  /* CTA */
+  .cta-band{background:var(--accent);padding:4rem;text-align:center;color:white;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;margin-bottom:1rem;}
+  .cta-band p{font-size:1rem;opacity:.85;margin-bottom:2rem;}
+  .btn-white{background:white;color:var(--accent);padding:.9rem 2.5rem;border-radius:50px;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;}
+
+  footer{background:#111;color:white;padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .foot-copy{font-size:.8rem;color:#555;margin-top:.4rem;}
+  .foot-links{display:flex;gap:1.5rem;}
+  .foot-links a{color:#888;font-size:.85rem;text-decoration:none;transition:color .2s;}
+  .foot-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="1_home.html" class="logo">Core<span>Imagine</span> Studio</a>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="protfolio.html">Portfolio</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about-us.html" >About</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <p class="tag">Our Services</p>
+  <h1>Design that <em>works</em> as hard<br>as you do</h1>
+  <p>We offer a full suite of creative services — from brand strategy to pixel-perfect execution — tailored to your business needs and budget.</p>
+</div>
+
+<section class="section">
+  <div class="services-detailed">
+
+    <!-- 1. Brand Identity -->
+    <div class="svc-row">
+      <div class="svc-visual" style="background:#D85A30;">
+        <span class="big-icon">◈</span>
+        <span class="label">Brand Identity</span>
+      </div>
+      <div class="svc-text">
+        <div class="svc-num">01</div>
+        <p class="tag">Branding</p>
+        <h2>Brand Identity Design</h2>
+        <p>Your brand is far more than a logo — it's the total impression your business makes on the world. We build comprehensive brand systems that communicate your values, attract your ideal customers, and stand the test of time.</p>
+        <ul class="svc-list">
+          <li>Custom logo design (3 concepts, unlimited revisions)</li>
+          <li>Color palette &amp; typography system</li>
+          <li>Brand guidelines document (PDF &amp; digital)</li>
+          <li>Business card, letterhead &amp; stationery design</li>
+          <li>Brand voice &amp; messaging framework</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. Print Design -->
+    <div class="svc-row reverse">
+      <div class="svc-text">
+        <div class="svc-num">02</div>
+        <p class="tag">Print Media</p>
+        <h2>Print Design</h2>
+        <p>In a digital-first world, high-quality print materials still make a powerful statement. We design everything from business cards to large-format banners — all print-ready and professionally finished.</p>
+        <ul class="svc-list">
+          <li>Business cards, letterheads &amp; envelopes</li>
+          <li>Brochures, flyers &amp; catalogues</li>
+          <li>Posters, banners &amp; signage</li>
+          <li>Menus, books &amp; magazines</li>
+          <li>Event programs &amp; invitations</li>
+        </ul>
+      </div>
+      <div class="svc-visual" style="background:#1a1a1a;">
+        <span class="big-icon">▤</span>
+        <span class="label">Print Design</span>
+      </div>
+    </div>
+
+    <!-- 3. UI/Web Design -->
+    <div class="svc-row">
+      <div class="svc-visual" style="background:#185FA5;">
+        <span class="big-icon">⬡</span>
+        <span class="label">UI / Web Design</span>
+      </div>
+      <div class="svc-text">
+        <div class="svc-num">03</div>
+        <p class="tag">Digital Design</p>
+        <h2>UI &amp; Web Design</h2>
+        <p>We create digital experiences that are both beautiful and functional. Our UI/UX designs are grounded in user research and designed to convert — whether it's a marketing website, e-commerce store, or mobile application.</p>
+        <ul class="svc-list">
+          <li>Website design (Figma / HTML deliverables)</li>
+          <li>Mobile app UI design (iOS &amp; Android)</li>
+          <li>Landing page design for conversions</li>
+          <li>E-commerce store design</li>
+          <li>Wireframes &amp; interactive prototypes</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4. Social Media -->
+    <div class="svc-row reverse">
+      <div class="svc-text">
+        <div class="svc-num">04</div>
+        <p class="tag">Social Media</p>
+        <h2>Social Media Graphics</h2>
+        <p>Stand out in the feed. We create scroll-stopping social media visuals that maintain brand consistency while driving engagement, shares, and sales across all major platforms.</p>
+        <ul class="svc-list">
+          <li>Instagram posts, reels covers &amp; story templates</li>
+          <li>Facebook &amp; LinkedIn banner &amp; post design</li>
+          <li>Paid ad creatives (static &amp; animated)</li>
+          <li>Monthly content calendar design packages</li>
+          <li>Profile setup &amp; highlight cover design</li>
+        </ul>
+      </div>
+      <div class="svc-visual" style="background:#993356;">
+        <span class="big-icon">◎</span>
+        <span class="label">Social Media</span>
+      </div>
+    </div>
+
+    <!-- 5. Motion Graphics -->
+    <div class="svc-row">
+      <div class="svc-visual" style="background:#3B6D11;">
+        <span class="big-icon">✦</span>
+        <span class="label">Motion Graphics</span>
+      </div>
+      <div class="svc-text">
+        <div class="svc-num">05</div>
+        <p class="tag">Animation</p>
+        <h2>Motion Graphics</h2>
+        <p>Bring your brand to life with motion. From animated logos to full explainer videos, we create moving visuals that capture attention and communicate complex ideas with ease.</p>
+        <ul class="svc-list">
+          <li>Animated logo reveals</li>
+          <li>Explainer &amp; product videos (30–120 seconds)</li>
+          <li>Social media animated posts &amp; stories</li>
+          <li>Intro &amp; outro animations for YouTube</li>
+          <li>Presentation &amp; pitch deck animations</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. Packaging -->
+    <div class="svc-row reverse">
+      <div class="svc-text">
+        <div class="svc-num">06</div>
+        <p class="tag">Packaging</p>
+        <h2>Packaging Design</h2>
+        <p>Great packaging is a silent salesperson. We design product packaging that communicates quality, attracts buyers on the shelf, and creates an unforgettable unboxing experience for your customers.</p>
+        <ul class="svc-list">
+          <li>Box, pouch &amp; bottle packaging design</li>
+          <li>Label &amp; sticker design</li>
+          <li>3D mockups for e-commerce &amp; presentations</li>
+          <li>Dieline &amp; print-ready file delivery</li>
+          <li>Eco-friendly packaging concepts</li>
+        </ul>
+      </div>
+      <div class="svc-visual" style="background:#854F0B;">
+        <span class="big-icon">▣</span>
+        <span class="label">Packaging</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <p class="tag">Transparent Pricing</p>
+  <h2 class="sec-title" style="font-family:'Playfair Display',serif;font-size:2.5rem;color:white;margin-bottom:1rem;">Simple, honest packages</h2>
+  <p class="sub">No hidden fees. Every project starts with a free 30-minute consultation to find the right fit.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <p class="price-tier">Starter</p>
+      <div class="price-amount">₹15,000 <span>/ project</span></div>
+      <p class="price-desc">Perfect for small businesses and startups getting started with professional design.</p>
+      <ul class="price-list">
+        <li>Logo design (2 concepts)</li>
+        <li>Basic brand colors &amp; fonts</li>
+        <li>Business card design</li>
+        <li>2 rounds of revisions</li>
+        <li>All source files included</li>
+      </ul>
+      <a href="6_contact.html" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <p class="price-tier">Professional</p>
+      <div class="price-amount">₹45,000 <span>/ project</span></div>
+      <p class="price-desc">Our most popular package for growing businesses ready to invest in a full brand identity.</p>
+      <ul class="price-list">
+        <li>Logo design (3 concepts)</li>
+        <li>Complete brand guidelines</li>
+        <li>Stationery suite (5 items)</li>
+        <li>Social media kit</li>
+        <li>Unlimited revisions</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="6_contact.html" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card">
+      <p class="price-tier">Enterprise</p>
+      <div class="price-amount">Custom <span>/ quote</span></div>
+      <p class="price-desc">Tailored solutions for established businesses requiring comprehensive design systems.</p>
+      <ul class="price-list">
+        <li>Full brand identity system</li>
+        <li>Website &amp; UI design</li>
+        <li>Packaging design</li>
+        <li>Motion graphics</li>
+        <li>Ongoing design retainer</li>
+        <li>Dedicated design manager</li>
+      </ul>
+      <a href="6_contact.html" class="price-btn">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Not sure which package fits?</h2>
+  <p>Schedule a free 30-minute call with our team. We'll recommend the perfect solution for your needs.</p>
+  <a href="6_contact.html" class="btn-white">Book a Free Call</a>
+</div>
+
+<footer>
+  <div>
+    <a href="1_home.html" style="font-family:'Playfair Display',serif;font-size:1.3rem;text-decoration:none;color:white;">Core<span style="color:var(--accent)">imagine</span> Studio</a>
+    <p class="foot-copy">© 2025 Core Imagine Studio. All rights reserved.</p>
+  </div>
+  <div class="foot-links">
+    <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">X</a><a href="6_contact.html">Contact</a>
+  </div>
+</footer>
+</body>
+</html>
